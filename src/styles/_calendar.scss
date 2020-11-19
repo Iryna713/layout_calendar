@@ -1,0 +1,84 @@
+.calendar > div:hover {
+  background-color: #ffbfcb;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 708px;
+
+  margin: 20vh auto;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+
+.calendar :nth-child(-n+31) {
+  margin: 1px 0.5px;
+}
+
+.calendar-31 {
+  @for $i from 1 through 31 {
+    @include day($i);
+  }
+}
+
+.calendar-30 {
+  @for $i from 1 through 30 {
+    @include day($i);
+  }
+}
+
+.calendar-29 {
+  @for $i from 1 through 29 {
+    @include day($i);
+  }
+}
+
+.calendar-28 {
+  @for $i from 1 through 28 {
+    @include day($i);
+  }
+}
+
+.calendar-mon {
+  div:first-child {
+    margin-left: 1px;
+  }
+}
+
+.calendar-tue {
+  div:first-child {
+    margin-left: 102px;
+  }
+}
+
+.calendar-wed {
+  &:first-child {
+    margin-left: 203px;
+  }
+}
+
+.calendar-thu {
+  &:first-child {
+    margin-left: 304px;
+  }
+}
+
+.calendar-fri {
+  &:first-child {
+    margin-left: 405px;
+  }
+}
+
+.calendar-sat {
+  &:first-child {
+    margin-left: 506px;
+  }
+}
+
+.calendar-sun {
+  &:first-child {
+    margin-left: 607px;
+  }
+}
