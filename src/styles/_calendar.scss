@@ -11,52 +11,26 @@
   :nth-child(-n+31) {
     height: 100px;
     width: 100px;
-    margin: 1px 0.5px;
+    margin-right: 1px;
+    margin-bottom: 1px;
     line-height: 100px;
-    align-content: center;
     background-color: #eee;
     border: 1px solid #000;
+    transition-duration: 0.5s;
   }
 
-  &-mon {
-    :nth-child(1) {
-      margin-left: 1px;
-    }
-  }
+  $weekDay:
+    "mon" 0,
+    "tue" 1,
+    "wed" 2,
+    "thu" 3,
+    "fri" 4,
+    "sat" 5,
+    "sun" 6;
 
-  &-tue {
-    :nth-child(1) {
-      margin-left: 102px;
-    }
-  }
-
-  &-wed {
-    :nth-child(1) {
-      margin-left: 203px;
-    }
-  }
-
-  &-thu {
-    :nth-child(1) {
-      margin-left: 304px;
-    }
-  }
-
-  &-fri {
-    :nth-child(1) {
-      margin-left: 405px;
-    }
-  }
-
-  &-sat {
-    :nth-child(1) {
-      margin-left: 506px;
-    }
-  }
-
-  &-sun {
-    :nth-child(1) {
-      margin-left: 607px;
+  @each $name, $index in $weekDay {
+    &-#{$name} :nth-child(1) {
+      margin-left: ($index * 100) + (1px * $index);
     }
   }
 
@@ -65,23 +39,21 @@
     text-align: center;
   }
 
-  &-30 :nth-child(31),
-  &-28 :nth-child(n+29):nth-child(-n+31),
-  &-29 :nth-child(n+30):nth-child(-n+31) {
-    display: none;
+  @for $i from 1 through 31 {
+    :nth-child(#{$i})::before {
+      content: "#{$i}";
+    }
+  }
+
+  @for $daysCount from 28 through 30 {
+    &-#{$daysCount} :nth-child(n+#{$daysCount+1}):nth-child(-n+31) {
+      display: none;
+    }
   }
 
   :nth-child(-n+31):hover {
     background-color: #ffbfcb;
     cursor: pointer;
-
     transform: translate(0, -20px);
-    transition-duration: 0.5s;
-  }
-
-  @for $i from 1 through 31 {
-    :nth-child(#{$i})::before {
-      content: "#{$i}";
-    }
   }
 }
